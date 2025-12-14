@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text;
+    @apply transition-colors duration-200;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-light-border dark:bg-dark-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-light-text-secondary dark:bg-dark-text-secondary;
+  }
+}
+
+@layer components {
+  /* Glassmorphism card for dark mode */
+  .glass-card {
+    @apply bg-white dark:bg-dark-bg-secondary/70;
+    @apply dark:backdrop-blur-md;
+    @apply border border-light-border dark:border-white/10;
+    @apply rounded-lg shadow-sm;
+  }
+
+  /* Status badges */
+  .badge {
+    @apply px-2 py-0.5 text-xs font-medium rounded-full;
+  }
+
+  .badge-active {
+    @apply bg-status-active/10 text-status-active;
+  }
+
+  .badge-completed {
+    @apply bg-status-completed/10 text-status-completed;
+  }
+
+  .badge-on-hold {
+    @apply bg-status-on-hold/10 text-status-on-hold;
+  }
+
+  .badge-todo {
+    @apply bg-status-todo/10 text-status-todo;
+  }
+
+  .badge-in-progress {
+    @apply bg-status-in-progress/10 text-status-in-progress;
+  }
+
+  .badge-done {
+    @apply bg-status-done/10 text-status-done;
+  }
+
+  /* Form inputs */
+  .input {
+    @apply w-full py-2 px-3 text-sm;
+    @apply bg-white dark:bg-dark-bg-secondary;
+    @apply border border-light-border dark:border-dark-border;
+    @apply rounded-md;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary;
+    @apply transition-all duration-200;
+    @apply placeholder:text-light-text-secondary/50 dark:placeholder:text-dark-text-secondary/50;
+  }
+
+  .input:hover {
+    @apply border-primary/50;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply py-2 px-4 text-sm font-medium rounded-md;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply active:scale-95;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white;
+    @apply hover:bg-primary-dark hover:shadow-md hover:shadow-primary/25;
+    @apply focus:ring-primary;
+  }
+
+  .btn-secondary {
+    @apply bg-light-bg-secondary dark:bg-dark-bg-secondary;
+    @apply text-light-text dark:text-dark-text;
+    @apply border border-light-border dark:border-dark-border;
+    @apply hover:bg-light-border dark:hover:bg-dark-border hover:shadow-sm;
+  }
+
+  .btn-sm {
+    @apply py-1.5 px-3 text-xs;
+  }
+
+  /* Interactive cards */
+  .interactive-card {
+    @apply glass-card;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-lg hover:-translate-y-0.5;
+    @apply active:scale-[0.98];
+  }
+
+  /* Pulse animation for loading states */
+  .pulse-soft {
+    animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  /* Slide down animation */
+  .animate-slideDown {
+    animation: slideDown 0.2s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Fade in animation */
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Scale in animation */
+  .animate-scaleIn {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Shimmer loading effect */
+  .shimmer {
+    @apply relative overflow-hidden;
+  }
+
+  .shimmer::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Hover lift effect */
+  .hover-lift {
+    @apply transition-all duration-200;
+    @apply hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  /* Focus ring */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2;
+  }
+}
+
+@layer utilities {
+  /* Smooth transitions */
+  .transition-theme {
+    @apply transition-colors duration-200 ease-in-out;
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-dark;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
